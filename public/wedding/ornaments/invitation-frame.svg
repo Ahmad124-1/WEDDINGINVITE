@@ -1,0 +1,22 @@
+<svg viewBox="0 0 300 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldF" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c4a87c" />
+      <stop offset="50%" stop-color="#b89a62" />
+      <stop offset="100%" stop-color="#a0824e" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(15, 15)">
+    <rect x="0" y="0" width="270" height="570" rx="4" stroke="url(#goldF)" stroke-width="1" fill="none" opacity="0.6" />
+    <rect x="8" y="8" width="254" height="554" rx="2" stroke="url(#goldF)" stroke-width="0.6" fill="none" opacity="0.35" />
+
+    <path d="M0 60 Q40 50 135 55 Q230 60 270 50" stroke="url(#goldF)" stroke-width="0.6" fill="none" opacity="0.4" />
+    <path d="M0 540 Q40 550 135 545 Q230 540 270 550" stroke="url(#goldF)" stroke-width="0.6" fill="none" opacity="0.4" />
+    <path d="M60 0 Q50 40 55 135 Q60 230 50 270" stroke="url(#goldF)" stroke-width="0.6" fill="none" opacity="0.4" />
+    <path d="M210 0 Q220 40 215 135 Q210 230 220 270" stroke="url(#goldF)" stroke-width="0.6" fill="none" opacity="0.4" />
+
+    <path d="M135 0 L135 20 M135 280 L135 300 M135 560 L135 570" stroke="url(#goldF)" stroke-width="0.5" opacity="0.5" />
+    <path d="M0 135 L20 135 M280 135 L270 135 M135 135 L155 135" stroke="url(#goldF)" stroke-width="0.5" opacity="0.5" />
+  </g>
+</svg>

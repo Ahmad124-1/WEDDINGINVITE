@@ -1,0 +1,41 @@
+<svg viewBox="0 0 300 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c4a87c" />
+      <stop offset="50%" stop-color="#b89a62" />
+      <stop offset="100%" stop-color="#a0824e" />
+    </linearGradient>
+    <linearGradient id="botanicalA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8a9a7e" />
+      <stop offset="100%" stop-color="#6b7c5e" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(20, 50)">
+    <path d="M10 0 Q30 20 25 60 Q20 100 35 140 Q45 170 40 200" stroke="url(#goldA)" stroke-width="1.2" fill="none" opacity="0.85" />
+    <path d="M10 0 Q30 20 25 60 Q20 100 35 140 Q45 170 40 200" stroke="url(#botanicalA)" stroke-width="0.8" fill="none" opacity="0.5" />
+
+    <path d="M20 40 Q35 35 55 45 Q70 55 85 50" stroke="url(#goldA)" stroke-width="0.9" fill="none" opacity="0.75" />
+    <path d="M20 40 Q35 35 55 45 Q70 55 85 50" stroke="url(#botanicalA)" stroke-width="0.6" fill="none" opacity="0.45" />
+    <ellipse cx="55" cy="38" rx="14" ry="7" fill="url(#botanicalA)" opacity="0.35" transform="rotate(-15 55 38)" />
+    <ellipse cx="70" cy="52" rx="10" ry="5" fill="url(#botanicalA)" opacity="0.3" transform="rotate(10 70 52)" />
+    <ellipse cx="45" cy="48" rx="8" ry="4" fill="url(#botanicalA)" opacity="0.28" transform="rotate(-25 45 48)" />
+
+    <path d="M22 100 Q45 90 75 100 Q100 110 120 100" stroke="url(#goldA)" stroke-width="0.9" fill="none" opacity="0.75" />
+    <path d="M22 100 Q45 90 75 100 Q100 110 120 100" stroke="url(#botanicalA)" stroke-width="0.6" fill="none" opacity="0.45" />
+    <ellipse cx="55" cy="94" rx="16" ry="8" fill="url(#botanicalA)" opacity="0.35" transform="rotate(-10 55 94)" />
+    <ellipse cx="85" cy="102" rx="12" ry="6" fill="url(#botanicalA)" opacity="0.3" transform="rotate(15 85 102)" />
+    <ellipse cx="105" cy="96" rx="9" ry="4.5" fill="url(#botanicalA)" opacity="0.28" transform="rotate(-20 105 96)" />
+
+    <path d="M28 160 Q50 150 80 160 Q105 170 125 160" stroke="url(#goldA)" stroke-width="0.9" fill="none" opacity="0.75" />
+    <ellipse cx="55" cy="154" rx="14" ry="7" fill="url(#botanicalA)" opacity="0.32" transform="rotate(-12 55 154)" />
+    <ellipse cx="90" cy="162" rx="10" ry="5" fill="url(#botanicalA)" opacity="0.28" transform="rotate(18 90 162)" />
+
+    <circle cx="90" cy="50" r="4" fill="url(#goldA)" opacity="0.6" />
+    <circle cx="120" cy="100" r="3.5" fill="url(#goldA)" opacity="0.55" />
+    <circle cx="125" cy="160" r="3" fill="url(#goldA)" opacity="0.5" />
+
+    <path d="M60 85 Q65 80 70 85 Q75 90 70 95 Q65 100 60 95 Q55 90 60 85" stroke="url(#goldA)" stroke-width="0.5" fill="none" opacity="0.5" />
+    <path d="M100 145 Q105 140 110 145 Q115 150 110 155 Q105 160 100 155 Q95 150 100 145" stroke="url(#goldA)" stroke-width="0.5" fill="none" opacity="0.5" />
+  </g>
+</svg>

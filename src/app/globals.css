@@ -3,14 +3,25 @@
 :root {
   --ivory: #f7f2e8;
   --cream: #efe5d3;
-  --charcoal: #24211d;
+  --parchment: #e8dcc8;
+  --champagne: #e0d4c0;
+  --champagne-muted: #d4c8b0;
   --gold: #b89a62;
   --gold-muted: #a0824e;
-  --warm-brown: #3d3226;
+  --gold-soft: #c4a87c;
+  --charcoal: #24211d;
+  --charcoal-soft: #3a3530;
+  --botanical: #6b7c5e;
+  --botanical-soft: #8a9a7e;
   --font-inter: "Inter", system-ui, sans-serif;
   --font-playfair: "Playfair Display", Georgia, serif;
   --font-amiri: "Amiri", serif;
 }
+
+.font-display { font-family: var(--font-playfair); }
+.font-serif { font-family: var(--font-playfair); }
+.font-sans { font-family: var(--font-inter); }
+.font-arabic { font-family: var(--font-amiri); }
 
 * { box-sizing: border-box; }
 
@@ -73,7 +84,7 @@ button, a {
   inset: 0;
   pointer-events: none;
   z-index: 2;
-  opacity: 0.22;
+  opacity: 0.18;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
   background-repeat: repeat;
@@ -85,9 +96,48 @@ button, a {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.04;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='0.6'/%3E%3C/svg%3E");
   background-size: 256px;
+}
+
+.paper-texture-v2 {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.028;
+  mix-blend-mode: multiply;
+  background-image: url("/wedding/textures/paper-grain.svg");
+  background-repeat: repeat;
+  background-size: 300px;
+}
+
+.wedding-texture-root {
+  position: relative;
+  isolation: isolate;
+}
+
+.wedding-texture-root::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(247,242,232,0.92) 0%, rgba(239,229,211,0.88) 50%, rgba(232,220,200,0.85) 100%);
+}
+
+.wedding-texture-root::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: url("/wedding/textures/fine-grain.svg");
+  background-repeat: repeat;
+  background-size: 200px;
+  opacity: 0.3;
+  mix-blend-mode: multiply;
 }
 
 @media (prefers-reduced-motion: reduce) {

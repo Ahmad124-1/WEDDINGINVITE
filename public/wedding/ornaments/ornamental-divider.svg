@@ -1,0 +1,25 @@
+<svg viewBox="0 0 300 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldD" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c4a87c" />
+      <stop offset="50%" stop-color="#b89a62" />
+      <stop offset="100%" stop-color="#a0824e" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(0, 10)">
+    <line x1="0" y1="10" x2="110" y2="10" stroke="url(#goldD)" stroke-width="0.6" opacity="0.5" />
+    <line x1="190" y1="10" x2="300" y2="10" stroke="url(#goldD)" stroke-width="0.6" opacity="0.5" />
+
+    <path d="M115 10 Q125 4 135 10 Q145 16 150 10 Q155 4 165 10 Q175 16 185 10" stroke="url(#goldD)" stroke-width="0.7" fill="none" opacity="0.7" />
+    <path d="M118 10 Q128 6 138 10 Q148 14 150 10 Q152 6 162 10 Q172 14 182 10" stroke="url(#goldD)" stroke-width="0.4" fill="none" opacity="0.5" />
+
+    <circle cx="150" cy="10" r="3" fill="url(#goldD)" opacity="0.7" />
+    <circle cx="150" cy="10" r="1.2" fill="var(--ivory)" opacity="0.8" />
+
+    <circle cx="135" cy="6" r="1.5" fill="url(#goldD)" opacity="0.45" />
+    <circle cx="165" cy="6" r="1.5" fill="url(#goldD)" opacity="0.45" />
+    <circle cx="120" cy="10" r="1" fill="url(#goldD)" opacity="0.35" />
+    <circle cx="180" cy="10" r="1" fill="url(#goldD)" opacity="0.35" />
+  </g>
+</svg>
