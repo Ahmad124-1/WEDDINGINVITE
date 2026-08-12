@@ -17,6 +17,7 @@ interface FloralDecorationProps extends HTMLAttributes<HTMLDivElement> {
   opacity?: number;
   rotation?: number;
   animationDelay?: number;
+  maxWidth?: number;
   className?: string;
   children?: ReactNode;
 }
@@ -47,6 +48,7 @@ export default function FloralDecoration({
   opacity = 0.6,
   rotation = 0,
   animationDelay = 0,
+  maxWidth = 140,
   className = "",
   ...props
 }: FloralDecorationProps) {
@@ -60,8 +62,8 @@ export default function FloralDecoration({
       <img
         src={svgMap[position]}
         alt=""
-        className="h-auto w-auto max-w-[140px]"
-        style={{ animationDelay: `${animationDelay}s` }}
+        className="h-auto w-auto"
+        style={{ maxWidth: `${maxWidth}px`, animationDelay: `${animationDelay}s` }}
         loading="lazy"
       />
     </div>

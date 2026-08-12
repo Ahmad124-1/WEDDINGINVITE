@@ -1,92 +1,48 @@
 "use client";
 
+import { useLayoutEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { invitation } from "@/data/invitation";
+import FloralDecoration from "@/components/wedding/FloralDecoration";
+import OrnamentalFrame from "@/components/wedding/OrnamentalFrame";
+import OrnamentalDivider from "@/components/wedding/OrnamentalDivider";
+import CentralMedallion from "@/components/wedding/CentralMedallion";
+import WeddingText from "@/components/wedding/WeddingText";
 
 type Props = { isOpen: boolean; onOpen: () => void };
 
-const ornamentSvg = (
-  <svg
-    viewBox="0 0 120 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="mx-auto h-5 w-24 text-[var(--gold)]"
-    aria-hidden
-  >
-    <path
-      d="M60 4.5C63.5 4.5 66.5 6 68.5 8.5L75 2.5L68.5 15.5C66.5 18 63.5 19.5 60 19.5C56.5 19.5 53.5 18 51.5 15.5L45 2.5L51.5 8.5C53.5 6 56.5 4.5 60 4.5Z"
-      fill="currentColor"
-      opacity="0.35"
-    />
-    <path
-      d="M60 9.5C62 9.5 63.5 10.5 64.5 12L68.5 7.5L64.5 16.5C63.5 18 62 19 60 19C58 19 56.5 18 55.5 16.5L51.5 7.5L55.5 12C56.5 10.5 58 9.5 60 9.5Z"
-      fill="currentColor"
-      opacity="0.55"
-    />
-    <circle cx="60" cy="12" r="2.5" fill="currentColor" opacity="0.8" />
-  </svg>
-);
-
-const cornerOrnament = (
-  <svg
-    viewBox="0 0 80 80"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="absolute h-28 w-28 text-[var(--gold)] opacity-25"
-    aria-hidden
-  >
-    <path
-      d="M10 10C10 10 10 30 30 30C50 30 50 10 50 10"
-      stroke="currentColor"
-      strokeWidth="1"
-      fill="none"
-    />
-    <path
-      d="M14 14C14 14 14 28 28 28C42 28 42 14 42 14"
-      stroke="currentColor"
-      strokeWidth="0.75"
-      fill="none"
-      opacity="0.6"
-    />
-    <circle cx="30" cy="30" r="1.5" fill="currentColor" opacity="0.5" />
-    <circle cx="22" cy="22" r="1" fill="currentColor" opacity="0.4" />
-  </svg>
-);
-
-const fingerIndicator = (
-  <svg
-    viewBox="0 0 32 48"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-10 w-6 text-[var(--gold)]"
-    aria-hidden
-  >
-    <path
-      d="M16 4C20 4 23 7 23 11V20C25 21 26 23 26 25V34C26 38 23 41 19 41H13C9 41 6 38 6 34V25C6 23 7 21 9 20V11C9 7 12 4 16 4Z"
-      stroke="currentColor"
-      strokeWidth="1.4"
-      fill="none"
-    />
-    <path
-      d="M12 14C12 12 14 11 16 11C18 11 20 12 20 14"
-      stroke="currentColor"
-      strokeWidth="1.2"
-      strokeLinecap="round"
-    />
-    <circle cx="16" cy="18" r="1" fill="currentColor" opacity="0.6" />
-  </svg>
-);
-
 export default function OpeningCover({ isOpen, onOpen }: Props) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (isOpen || !cardRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      tl.fromTo(".op-bg", { opacity: 0 }, { opacity: 1, duration: 0.7 })
+        .fromTo(".op-botanical", { opacity: 0, scale: 0.82 }, { opacity: (_, t) => parseFloat((t as HTMLElement).style.opacity || "0.6"), scale: 1, duration: 1.15, stagger: 0.07 }, "-=0.35")
+        .fromTo(".op-frame", { opacity: 0, scale: 0.93 }, { opacity: 0.42, scale: 1.06, duration: 0.95 }, "-=0.55")
+        .fromTo(".op-medallion", { opacity: 0, scale: 0.65 }, { opacity: 0.65, scale: 1, duration: 0.75 }, "-=0.35")
+        .fromTo(".op-text", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.85, stagger: 0.06 }, "-=0.25")
+        .fromTo(".op-seal", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.75 }, "-=0.15")
+        .fromTo(".op-indicator", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.1");
+    }, cardRef);
+
+    return () => ctx.revert();
+  }, [isOpen]);
+
   return (
     <motion.section
       id="opening-cover"
       animate={
         isOpen
-          ? { opacity: 0, scale: 1.05, y: -30, filter: "blur(8px)" }
+          ? { opacity: 0, scale: 1.04, y: -24, filter: "blur(10px)" }
           : { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
       }
       transition={{
-        duration: 1.8,
+        duration: 1.6,
         ease: [0.76, 0, 0.24, 1],
       }}
       onAnimationComplete={() => {
@@ -100,81 +56,143 @@ export default function OpeningCover({ isOpen, onOpen }: Props) {
       }}
       className="fixed inset-0 z-50 flex min-h-[100dvh] items-center justify-center overflow-hidden bg-[var(--ivory)]"
     >
-      <div className="grain-overlay" />
+      <div
+        ref={cardRef}
+        className="op-bg relative flex h-full w-full max-w-[430px] flex-col items-center justify-center px-5 py-10 md:px-8 md:py-14"
+      >
+        <div className="grain-overlay" aria-hidden="true" />
+        <div className="paper-texture-v2" aria-hidden="true" />
 
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        {cornerOrnament}
-        <div className="absolute -right-10 -top-10 rotate-90">{cornerOrnament}</div>
-        <div className="absolute -bottom-10 -left-10 -rotate-90">{cornerOrnament}</div>
-        <div className="absolute -bottom-10 -right-10 rotate-180">{cornerOrnament}</div>
-      </div>
-
-      <div className="relative z-10 flex w-full max-w-[390px] flex-col items-center px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.25, ease: "easeOut" }}
-        >
-          {ornamentSvg}
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.5, ease: "easeOut" }}
-          className="mt-6 font-amiri text-[clamp(1.6rem,8vw,2.2rem)] leading-tight text-[var(--gold)]"
-          style={{ fontFamily: "var(--font-amiri)" }}
-        >
-          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-        </motion.p>
-
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.75, ease: "easeInOut" }}
-          className="mt-8 h-px w-16 origin-center bg-[var(--gold)]"
+        <FloralDecoration
+          position="top-left"
+          scale={1.55}
+          opacity={0.72}
+          rotation={-7}
+          maxWidth={180}
+          className="op-botanical"
+        />
+        <FloralDecoration
+          position="top-right"
+          scale={1.35}
+          opacity={0.62}
+          rotation={9}
+          maxWidth={160}
+          className="op-botanical"
+        />
+        <FloralDecoration
+          position="bottom-left"
+          scale={1.45}
+          opacity={0.68}
+          rotation={5}
+          maxWidth={170}
+          className="op-botanical"
+        />
+        <FloralDecoration
+          position="bottom-right"
+          scale={1.25}
+          opacity={0.58}
+          rotation={-8}
+          maxWidth={150}
+          className="op-botanical"
         />
 
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.95, ease: "easeOut" }}
-          className="mt-6 text-[10px] font-normal tracking-[0.4em] uppercase text-[var(--charcoal)]"
-          style={{ fontFamily: "var(--font-playfair)" }}
-        >
-          You Are Cordially Invited
-        </motion.p>
+        <FloralDecoration
+          position="left"
+          scale={1.7}
+          opacity={0.28}
+          rotation={14}
+          maxWidth={200}
+          className="op-botanical"
+        />
+        <FloralDecoration
+          position="right"
+          scale={1.7}
+          opacity={0.28}
+          rotation={-14}
+          maxWidth={200}
+          className="op-botanical"
+        />
 
-        <motion.button
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.15, ease: "easeOut" }}
-          whileTap={{ scale: 0.96 }}
-          onClick={onOpen}
-          type="button"
-          className="relative mt-10 rounded-full border border-[var(--gold)] px-8 py-4 text-[11px] tracking-[0.28em] uppercase text-[var(--charcoal)] transition-colors duration-300 hover:bg-[var(--gold)] hover:text-[var(--ivory)] active:bg-[var(--gold)] active:text-[var(--ivory)]"
-          style={{ fontFamily: "var(--font-inter)" }}
-        >
-          Open Invitation
-        </motion.button>
+        <OrnamentalFrame scale={1.06} opacity={0.42} className="op-frame">
+          <div className="flex h-full w-full flex-col items-center justify-center px-7 py-10 md:px-10 md:py-14">
+            <p
+              className="op-text font-amiri text-[clamp(1.7rem,7.5vw,2.5rem)] leading-tight text-[var(--gold)]"
+              style={{ fontFamily: "var(--font-amiri)" }}
+            >
+              بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            </p>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.9, duration: 0.8 }}
-          className="mt-10 flex flex-col items-center text-[var(--gold)]"
-        >
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{
-              duration: 2.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            {fingerIndicator}
-          </motion.div>
-        </motion.div>
+            <OrnamentalDivider className="my-5 op-text" />
+
+            <WeddingText variant="label" className="mb-7 op-text">
+              You Are Cordially Invited
+            </WeddingText>
+
+            <div className="op-text">
+              <WeddingText variant="display" className="text-[clamp(2.4rem,11vw,4.2rem)] text-[var(--charcoal)]">
+                {invitation.bride}
+              </WeddingText>
+
+              <div className="my-3 flex items-center justify-center gap-3">
+                <span className="h-px w-10 bg-[var(--gold)] opacity-60" />
+                <WeddingText variant="display" className="mx-1 text-[var(--gold)]">
+                  &
+                </WeddingText>
+                <span className="h-px w-10 bg-[var(--gold)] opacity-60" />
+              </div>
+
+              <WeddingText variant="display" className="text-[clamp(2.4rem,11vw,4.2rem)] text-[var(--charcoal)]">
+                {invitation.groom}
+              </WeddingText>
+            </div>
+
+            <OrnamentalDivider className="my-5 op-text" />
+
+            <WeddingText variant="serif" className="op-text text-[var(--charcoal-soft)]">
+              {invitation.event} — {invitation.date}
+            </WeddingText>
+
+            <motion.button
+              onClick={onOpen}
+              type="button"
+              className="op-seal relative mt-9 flex h-24 w-24 items-center justify-center rounded-full border-2 border-[var(--gold)] bg-[var(--ivory)]/75 backdrop-blur-sm transition-colors duration-300 hover:bg-[var(--gold)]/10 active:bg-[var(--gold)]/15"
+              whileTap={{ scale: 0.94 }}
+            >
+              <CentralMedallion
+                size={88}
+                scale={1}
+                opacity={0.65}
+                className="op-medallion absolute inset-0 h-full w-full"
+              />
+              <span
+                className="relative z-10 text-center text-[10px] leading-tight tracking-[0.2em] uppercase text-[var(--charcoal)]"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                Open<br />Invitation
+              </span>
+            </motion.button>
+
+            <div
+              className="op-indicator mt-10 flex flex-col items-center text-[var(--gold)]"
+            >
+              <motion.div
+                animate={{ y: [0, -7, 0] }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="h-4 w-4"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  aria-hidden="true"
+                >
+                  <path d="M12 5v14M5 12l7 7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </motion.div>
+            </div>
+          </div>
+        </OrnamentalFrame>
       </div>
     </motion.section>
   );

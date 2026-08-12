@@ -7,6 +7,7 @@ interface CentralMedallionProps extends HTMLAttributes<HTMLDivElement> {
   opacity?: number;
   rotation?: number;
   animationDelay?: number;
+  size?: number;
   className?: string;
 }
 
@@ -15,6 +16,7 @@ export default function CentralMedallion({
   opacity = 0.5,
   rotation = 0,
   animationDelay = 0,
+  size = 80,
   className = "",
   ...props
 }: CentralMedallionProps) {
@@ -29,7 +31,8 @@ export default function CentralMedallion({
         <img
           src="/wedding/ornaments/central-medallion.svg"
           alt=""
-          className="h-20 w-20 object-contain"
+          className="object-contain"
+          style={{ height: `${size}px`, width: `${size}px` }}
           loading="lazy"
         />
       </div>
